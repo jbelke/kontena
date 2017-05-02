@@ -1,6 +1,5 @@
 module Kontena::Cli::Grids::TrustedSubnets
   class ListCommand < Kontena::Command
-    include Kontena::Cli::Common
     include Kontena::Cli::GridOptions
 
     requires_current_master
