@@ -83,7 +83,7 @@ module V1
         r.post do
           # POST /v1/nodes/:grid/:node/evacuate
           r.on 'evacuate' do
-            outcome = HostNodes::Evacuate.run(@node)
+            outcome = HostNodes::Evacuate.run(host_node: @node)
             if outcome.success?
               {}
             else
@@ -93,7 +93,7 @@ module V1
 
           # POST /v1/nodes/:grid/:node/unevacuate
           r.on 'unevacuate' do
-            outcome = HostNodes::Unevacuate.run(@node)
+            outcome = HostNodes::Unevacuate.run(host_node: @node)
             if outcome.success?
               {}
             else
