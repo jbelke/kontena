@@ -16,7 +16,7 @@ class GridServiceScheduler
   def initialize(strategy)
     @strategy = strategy
     @filters = [
-      Scheduler::Filter::Evacuated.new,
+      Scheduler::Filter::Availability.new,
       Scheduler::Filter::VolumePlugin.new,
       Scheduler::Filter::VolumeInstance.new,
       Scheduler::Filter::Affinity.new,

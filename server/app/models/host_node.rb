@@ -28,7 +28,8 @@ class HostNode
   field :last_seen_at, type: Time
   field :agent_version, type: String
   field :docker_version, type: String
-  field :evacuated, type: Boolean, default: false
+  #field :evacuated, type: Boolean, default: false
+  field :availability, type: String, default: 'active'
 
   embeds_many :volume_drivers, class_name: 'HostNodeDriver'
   embeds_many :network_drivers, class_name: 'HostNodeDriver'
