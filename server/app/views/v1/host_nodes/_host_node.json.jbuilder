@@ -1,5 +1,6 @@
 json.id node.node_id
 json.connected node.connected
+json.availability node.availability
 json.created_at node.created_at
 json.updated_at node.updated_at
 json.last_seen_at node.last_seen_at

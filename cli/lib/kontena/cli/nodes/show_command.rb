@@ -17,6 +17,7 @@ module Kontena::Cli::Nodes
       puts "  agent version: #{node['agent_version']}"
       puts "  docker version: #{node['docker_version']}"
       puts "  connected: #{node['connected'] ? 'yes': 'no'}"
+      puts "  availability: #{node['availability']}"
       puts "  last connect: #{node['updated_at']}"
       puts "  last seen: #{node['last_seen_at']}"
       puts "  public ip: #{node['public_ip']}"
