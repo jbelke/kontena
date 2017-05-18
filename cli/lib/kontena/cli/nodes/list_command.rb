@@ -29,7 +29,7 @@ module Kontena::Cli::Nodes
           "%s" % health_icon(node_health(node, grid_health)),
           "%-70.70s" % [multi ? "#{grid['name']}/#{node['name']}" : node['name']],
           "%-10s" % node['agent_version'],
-          "%-10s" % (node['connected'] ? "online" : "offline"),
+          "%-12s" % node_connected(node),
           "%-10s" % node_initial(node, grid),
           "%s" % [node_labels(node)],
         ].join ' '
@@ -41,7 +41,7 @@ module Kontena::Cli::Nodes
       require_current_grid
       token = require_token
 
-      puts "%s %-70s %-10s %-10s %-10s %-s" % [health_icon(nil), "Name", "Version", "Status", "Initial", "Labels"]
+      puts "%s %-70s %-10s %-12s %-10s %-s" % [health_icon(nil), "Name", "Version", "Status", "Initial", "Labels"]
 
       if all?
         grids = client(token).get("grids")
