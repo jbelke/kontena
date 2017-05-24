@@ -30,9 +30,6 @@ class Kontena::MainCommand < Kontena::Command
   subcommand "version", "Show CLI and current master version", load_subcommand('version_command')
   subcommand "volume", "Volume specific commands [EXPERIMENTAL]", load_subcommand('volume_command')
 
-  def execute
-  end
-
   # @param [String] command
   # @param [String] description
   # @param [Class] klass

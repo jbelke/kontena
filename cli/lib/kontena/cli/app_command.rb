@@ -1,4 +1,3 @@
-
 class Kontena::Cli::AppCommand < Kontena::Command
 
   warn Kontena.pastel.yellow("[DEPRECATED] The `kontena app` commands are deprecated in favor of `kontena stack` commands and will be removed in future releases")
@@ -16,7 +15,4 @@ class Kontena::Cli::AppCommand < Kontena::Command
   subcommand ["logs"], "Show service logs", load_subcommand('apps/logs_command')
   subcommand "monitor", "Monitor services", load_subcommand('apps/monitor_command')
   subcommand ["remove","rm"], "Remove services", load_subcommand('apps/remove_command')
-
-  def execute
-  end
 end
