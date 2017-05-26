@@ -1,28 +1,32 @@
 module Kontena::Cli::Cloud::Master
   class ListCommand < Kontena::Command
 
+    include Kontena::Cli::TableGenerator::Helper
+
     callback_matcher 'cloud-master', 'list'
 
     option '--return', :flag, 'Return the list', hidden: true
 
     requires_current_account_token
 
+    def fields
+      quiet? ? ['id'] : %w(id name owner url connected)
+    end
+
     def execute
-      response = cloud_client.get('user/masters')
+      response = spin_if(!quiet?, "Retrieving Master list from Kontena Cloud") do
+        cloud_client.get('user/masters')
+      end
+
       unless response && response.kind_of?(Hash) && response['data'].kind_of?(Array)
         abort "Listing masters failed".colorize(:red)
       end
 
-      if response['data'].empty?
-        return [] if self.return?
-        puts "No masters registered"
-      else
-        return response['data'] if self.return?
-        puts '%-26.26s %-24s %-12s %s' % ['ID', 'NAME', 'OWNER', 'URL']
-        response['data'].each do |data|
-          attr = data['attributes']
-          puts '%-26.26s %-24s %-12s %s' % [data['id'], attr['name'], attr['owner'], attr['url']]
-        end
+      return Array(response['data']) if self.return?
+
+      print_table(response['data']) do |row|
+        row.merge!(row['attributes'])
+        row['connected'] = !!row['connected'] ? pastel.green('yes') : pastel.red('no')
       end
     end
   end
